@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kampus</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f1eb;
+      color: #3b2f2f;
+    }
+
+    header {
+      background-color: #d1b7a1;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      position: relative;
+    }
+
+    .logo img {
+      height: 60px;
+    }
+
+    .menu ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 20px;
+    }
+
+    .menu a {
+      text-decoration: none;
+      color: #3b2f2f;
+      font-weight: bold;
+    }
+
+    .kategorije {
+      text-align: center;
+      padding: 40px 20px;
+      background-color: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+      max-width: 600px;
+      margin: 30px auto;
+      transition: transform 0.3s ease
+    }
+
+    .ikone {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .kategorija {
+      text-align: center;
+      text-decoration: none;
+      color: #3b2f2f;
+      font-size: 16px;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .kategorija i {
+      font-size: 32px;
+      display: block;
+      margin-bottom: 6px;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .kategorija:hover {
+      transform: translateY(-5px);
+      color: #a65b28;
+    }
+
+    .kategorija:hover i {
+      transform: scale(1.2);
+      color: #a65b28;
+    }
+
+    .meni-sekcija {
+      padding: 40px 20px;
+      max-width: 800px;
+      margin: 30px auto;
+      background-color: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .meni-sekcija h3 {
+      border-bottom: 2px solid #d1b7a1;
+      padding-bottom: 5px;
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+
+    .meni-sekcija ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .meni-sekcija li {
+      padding: 5px 0;
+      font-size: 16px;
+    }
+
+    .rezervacija-forma {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .rezervacija-forma input,
+    .rezervacija-forma textarea {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+      font-family: inherit;
+    }
+
+    .rezervacija-forma button {
+      background-color: #d1b7a1;
+      color: #3b2f2f;
+      border: none;
+      padding: 12px;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .rezervacija-forma button:hover {
+      background-color: #b89d84;
+    }
+
+    .mapa-kontejner iframe {
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .galerija {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .galerija a img {
+      width: 200px;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      object-fit: cover;
+    }
+
+    .galerija-slika {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .galerija-slika img {
+      width: 300px;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .radno-vreme {
+      list-style: none;
+      padding: 0;
+      font-size: 16px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .lang-toggle {
+      margin-left: auto;
+      display: flex;
+      gap: 10px;
+    }
+
+    .lang-toggle button {
+      background: none;
+      border: 1px solid #3b2f2f;
+      color: #3b2f2f;
+      font-weight: bold;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .lang-toggle button:hover {
+      background-color: #3b2f2f;
+      color: #fff;
+    }
+
+    .lang-select {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .lang-dropdown-btn {
+      background-color: #d1b7a1;
+      border: none;
+      color: #3b2f2f;
+      font-weight: bold;
+      padding: 8px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-left: 8px;
+    }
+
+    .lang-dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #fff;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      margin-top: 8px;
+      border-radius: 8px;
+      overflow: hidden;
+      z-index: 100;
+    }
+
+    .lang-dropdown-content a {
+      display: block;
+      padding: 10px 16px;
+      color: #3b2f2f;
+      text-decoration: none;
+      transition: background-color 0.2s;
+    }
+
+    .lang-dropdown-content a:hover {
+      background-color: #f0e6dc;
+    }
+
+    footer {
+      background-color: #d1b7a1;
+      padding: 30px;
+      text-align: center;
+      color: #3b2f2f;
+    }
+
+    footer h4 {
+      margin-bottom: 10px;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 28px;
+      background: none;
+      border: none;
+      color: #3b2f2f;
+      cursor: pointer;
+      margin-left: auto;
+    }
+
+    @media (max-width: 768px) {
+      .menu {
+        width: 100%;
+      }
+
+      .menu ul {
+        flex-direction: column;
+        align-items: center;
+        display: none;
+        width: 100%;
+        background-color: #d1b7a1;
+        margin-top: 10px;
+        border-radius: 10px;
+        padding: 10px 0;
+      }
+
+      .menu ul.show {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+        font-size: 28px;
+        background: none;
+        border: none;
+        color: #3b2f2f;
+        cursor: pointer;
+      }
+
+      .menu ul li {
+        padding: 10px 0;
+      }
+
+      .menu ul a {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="logo.png" alt="Kampus logo" />
+    </div>
+    <div class="lang-toggle">
+      <button onclick="setLanguage('sr')">SR</button>
+      <button onclick="setLanguage('en')">EN</button>
+    </div>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <nav class="menu">
+      <ul class="dropdown">
+        <li><a class="lang" href="#onama" data-sr="O nama" data-en="About Us">O nama</a></li>
+        <li><a class="lang" href="#galerija" data-sr="Galerija" data-en="Gallery">Galerija</a></li>
+        <li><a class="lang" href="#radnovreme" data-sr="Radno vreme" data-en="Working Hours">Radno vreme</a></li>
+        <li><a class="lang" href="#kontakt" data-sr="Kontakt" data-en="Contact">Kontakt</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="kategorije">
+      <div class="ikone">
+        <a href="#predjelo" class="kategorija">
+          <i class="fas fa-leaf"></i>
+          <span class="lang" data-sr="Predjelo" data-en="Appetizer">Predjelo</span>
+        </a>
+        <a href="#glavno" class="kategorija">
+          <i class="fas fa-drumstick-bite"></i>
+          <span class="lang" data-sr="Glavno jelo" data-en="Main Dish">Glavno jelo</span>
+        </a>
+        <a href="#toplo" class="kategorija">
+          <i class="fas fa-mug-hot"></i>
+          <span class="lang" data-sr="Toplo jelo" data-en="Hot Meal">Toplo jelo</span>
+        </a>
+        <a href="#napici" class="kategorija">
+          <i class="fas fa-coffee"></i>
+          <span class="lang" data-sr="Napici" data-en="Drinks">Napici</span>
+        </a>
+        <a href="#hleb" class="kategorija">
+          <i class="fas fa-bread-slice"></i>
+          <span class="lang" data-sr="Hleb" data-en="Bread">Hleb</span>
+        </a>
+        <a href="#rostilj" class="kategorija">
+          <i class="fas fa-fire"></i>
+          <span class="lang" data-sr="Roštilj" data-en="Grill">Roštilj</span>
+        </a>
+      </div>
+    </section>
+
+    <section id="predjelo" class="meni-sekcija">
+      <h3 class="lang" data-sr="Predjela" data-en="Appetizers">Predjela</h3>
+      <ul>
+        <li class="lang" data-sr="Bruskete - 320 RSD" data-en="Bruschetta - 320 RSD">Bruskete - 320 RSD</li>
+        <li class="lang" data-sr="Sirni tanjir - 450 RSD" data-en="Cheese plate - 450 RSD">Sirni tanjir - 450 RSD</li>
+        <li class="lang" data-sr="Masline i prepečen hleb - 300 RSD" data-en="Olives and toasted bread - 300 RSD">Masline i prepečen hleb - 300 RSD</li>
+        <li class="lang" data-sr="Namazi trio - 370 RSD" data-en="Spread trio - 370 RSD">Namazi trio - 370 RSD</li>
+        <li class="lang" data-sr="Caprese salata - 420 RSD" data-en="Caprese salad - 420 RSD">Caprese salata - 420 RSD</li>
+        <li class="lang" data-sr="Proja sa sirom - 250 RSD" data-en="Cornbread with cheese - 250 RSD">Proja sa sirom - 250 RSD</li>
+        <li class="lang" data-sr="Mini tart sa pečurkama - 350 RSD" data-en="Mini mushroom tart - 350 RSD">Mini tart sa pečurkama - 350 RSD</li>
+        <li class="lang" data-sr="Grilovani feta sir - 400 RSD" data-en="Grilled feta cheese - 400 RSD">Grilovani feta sir - 400 RSD</li>
+        <li class="lang" data-sr="Sušeni paradajz i rukola - 370 RSD" data-en="Sun-dried tomatoes and arugula - 370 RSD">Sušeni paradajz i rukola - 370 RSD</li>
+        <li class="lang" data-sr="Tostirani sendvič sa ajvarom - 290 RSD" data-en="Toasted ajvar sandwich - 290 RSD">Tostirani sendvič sa ajvarom - 290 RSD</li>
+      </ul>
+    </section>
+
+    <section id="glavno" class="meni-sekcija">
+      <h3 class="lang" data-sr="Glavna jela" data-en="Main Dishes">Glavna jela</h3>
+      <ul>
+        <li class="lang" data-sr="Pasta Bolonjeze - 620 RSD" data-en="Bolognese Pasta - 620 RSD">Pasta Bolonjeze - 620 RSD</li>
+        <li class="lang" data-sr="Ćuretina sa pireom - 750 RSD" data-en="Turkey with mashed potatoes - 750 RSD">Ćuretina sa pireom - 750 RSD</li>
+        <li class="lang" data-sr="File lososa sa povrćem - 1100 RSD" data-en="Salmon fillet with vegetables - 1100 RSD">File lososa sa povrćem - 1100 RSD</li>
+        <li class="lang" data-sr="Ravioli sa rikotom - 690 RSD" data-en="Ricotta ravioli - 690 RSD">Ravioli sa rikotom - 690 RSD</li>
+        <li class="lang" data-sr="Grilovana piletina sa kinoom - 720 RSD" data-en="Grilled chicken with quinoa - 720 RSD">Grilovana piletina sa kinoom - 720 RSD</li>
+        <li class="lang" data-sr="Biftek u sosu od bibera - 1350 RSD" data-en="Beefsteak in pepper sauce - 1350 RSD">Biftek u sosu od bibera - 1350 RSD</li>
+        <li class="lang" data-sr="Piletina na med i senf - 700 RSD" data-en="Honey mustard chicken - 700 RSD">Piletina na med i senf - 700 RSD</li>
+        <li class="lang" data-sr="Rižoto sa pečurkama - 680 RSD" data-en="Mushroom risotto - 680 RSD">Rižoto sa pečurkama - 680 RSD</li>
+        <li class="lang" data-sr="Goveđi gulaš sa njokama - 790 RSD" data-en="Beef stew with gnocchi - 790 RSD">Goveđi gulaš sa njokama - 790 RSD</li>
+        <li class="lang" data-sr="Vegan burger - 640 RSD" data-en="Vegan burger - 640 RSD">Vegan burger - 640 RSD</li>
+      </ul>
+    </section>
+
+    <section id="toplo" class="meni-sekcija">
+      <h3 class="lang" data-sr="Topla jela" data-en="Hot Meals">Topla jela</h3>
+      <ul>
+        <li class="lang" data-sr="Čorba od paradajza - 350 RSD" data-en="Tomato soup - 350 RSD">Čorba od paradajza - 350 RSD</li>
+        <li class="lang" data-sr="Gulaš - 550 RSD" data-en="Stew - 550 RSD">Gulaš - 550 RSD</li>
+        <li class="lang" data-sr="Krem čorba od bundeve - 360 RSD" data-en="Pumpkin cream soup - 360 RSD">Krem čorba od bundeve - 360 RSD</li>
+        <li class="lang" data-sr="Teleća čorba - 470 RSD" data-en="Veal soup - 470 RSD">Teleća čorba - 470 RSD</li>
+        <li class="lang" data-sr="Francuska supa od luka - 390 RSD" data-en="French onion soup - 390 RSD">Francuska supa od luka - 390 RSD</li>
+        <li class="lang" data-sr="Minestrone - 400 RSD" data-en="Minestrone - 400 RSD">Minestrone - 400 RSD</li>
+        <li class="lang" data-sr="Đuveč - 450 RSD" data-en="Djuveč (baked vegetable rice) - 450 RSD">Đuveč - 450 RSD</li>
+        <li class="lang" data-sr="Musaka - 520 RSD" data-en="Moussaka - 520 RSD">Musaka - 520 RSD</li>
+        <li class="lang" data-sr="Punjene paprike - 530 RSD" data-en="Stuffed peppers - 530 RSD">Punjene paprike - 530 RSD</li>
+        <li class="lang" data-sr="Pasulj prebranac - 410 RSD" data-en="Baked beans - 410 RSD">Pasulj prebranac - 410 RSD</li>
+      </ul>
+    </section>
+
+    <section id="napici" class="meni-sekcija">
+      <h3 class="lang" data-sr="Napici" data-en="Drinks">Napici</h3>
+      <ul>
+        <li class="lang" data-sr="Espresso - 150 RSD" data-en="Espresso - 150 RSD">Espresso - 150 RSD</li>
+        <li class="lang" data-sr="Limunada - 200 RSD" data-en="Lemonade - 200 RSD">Limunada - 200 RSD</li>
+        <li class="lang" data-sr="Kapućino - 190 RSD" data-en="Cappuccino - 190 RSD">Kapućino - 190 RSD</li>
+        <li class="lang" data-sr="Latte Macchiato - 210 RSD" data-en="Latte Macchiato - 210 RSD">Latte Macchiato - 210 RSD</li>
+        <li class="lang" data-sr="Ice Coffee - 240 RSD" data-en="Ice Coffee - 240 RSD">Ice Coffee - 240 RSD</li>
+        <li class="lang" data-sr="Topla čokolada - 250 RSD" data-en="Hot Chocolate - 250 RSD">Topla čokolada - 250 RSD</li>
+        <li class="lang" data-sr="Čaj (razne vrste) - 180 RSD" data-en="Tea (various types) - 180 RSD">Čaj (razne vrste) - 180 RSD</li>
+        <li class="lang" data-sr="Sveže ceđeni sok - 350 RSD" data-en="Freshly squeezed juice - 350 RSD">Sveže ceđeni sok - 350 RSD</li>
+        <li class="lang" data-sr="Cedevita - 170 RSD" data-en="Cedevita (vitamin drink) - 170 RSD">Cedevita - 170 RSD</li>
+        <li class="lang" data-sr="Mineralna voda - 130 RSD" data-en="Mineral water - 130 RSD">Mineralna voda - 130 RSD</li>
+      </ul>
+    </section>
+
+    <section id="hleb" class="meni-sekcija">
+      <h3 class="lang" data-sr="Hleb" data-en="Bread">Hleb</h3>
+      <ul>
+        <li class="lang" data-sr="Fokača - 100 RSD" data-en="Focaccia - 100 RSD">Fokača - 100 RSD</li>
+        <li class="lang" data-sr="Beli hleb - 70 RSD" data-en="White bread - 70 RSD">Beli hleb - 70 RSD</li>
+        <li class="lang" data-sr="Integralni hleb - 80 RSD" data-en="Whole grain bread - 80 RSD">Integralni hleb - 80 RSD</li>
+        <li class="lang" data-sr="Pogaca sa belim lukom - 120 RSD" data-en="Garlic bread - 120 RSD">Pogaca sa belim lukom - 120 RSD</li>
+        <li class="lang" data-sr="Mini lepinje - 90 RSD" data-en="Mini flatbreads - 90 RSD">Mini lepinje - 90 RSD</li>
+        <li class="lang" data-sr="Hleb sa semenkama - 110 RSD" data-en="Seeded bread - 110 RSD">Hleb sa semenkama - 110 RSD</li>
+        <li class="lang" data-sr="Kukuruzni hleb - 90 RSD" data-en="Cornbread - 90 RSD">Kukuruzni hleb - 90 RSD</li>
+        <li class="lang" data-sr="Proja - 100 RSD" data-en="Proja (cornmeal bread) - 100 RSD">Proja - 100 RSD</li>
+        <li class="lang" data-sr="Pecivo sa sirom - 130 RSD" data-en="Pastry with cheese - 130 RSD">Pecivo sa sirom - 130 RSD</li>
+        <li class="lang" data-sr="Pecivo sa spanaćem - 140 RSD" data-en="Pastry with spinach - 140 RSD">Pecivo sa spanaćem - 140 RSD</li>
+      </ul>
+    </section>
+
+    <section id="rostilj" class="meni-sekcija">
+      <h3 class="lang" data-sr="Roštilj" data-en="Grill">Roštilj</h3>
+      <ul>
+        <li class="lang" data-sr="Ćevapi (10 kom) - 600 RSD" data-en="Ćevapi (10 pcs) - 600 RSD">Ćevapi (10 kom) - 600 RSD</li>
+        <li class="lang" data-sr="Pileći file - 650 RSD" data-en="Chicken fillet - 650 RSD">Pileći file - 650 RSD</li>
+        <li class="lang" data-sr="Pljeskavica - 580 RSD" data-en="Burger patty (Pljeskavica) - 580 RSD">Pljeskavica - 580 RSD</li>
+        <li class="lang" data-sr="Vešalica - 720 RSD" data-en="Pork loin (Vešalica) - 720 RSD">Vešalica - 720 RSD</li>
+        <li class="lang" data-sr="Mešano meso - 950 RSD" data-en="Mixed grilled meat - 950 RSD">Mešano meso - 950 RSD</li>
+        <li class="lang" data-sr="Punjeni pileći file - 750 RSD" data-en="Stuffed chicken fillet - 750 RSD">Punjeni pileći file - 750 RSD</li>
+        <li class="lang" data-sr="Rolovana vešalica - 790 RSD" data-en="Rolled pork loin - 790 RSD">Rolovana vešalica - 790 RSD</li>
+        <li class="lang" data-sr="Ražnjići - 640 RSD" data-en="Skewers - 640 RSD">Ražnjići - 640 RSD</li>
+        <li class="lang" data-sr="Bela vešalica - 700 RSD" data-en="White pork loin - 700 RSD">Bela vešalica - 700 RSD</li>
+        <li class="lang" data-sr="Dimljena kobasica - 500 RSD" data-en="Smoked sausage - 500 RSD">Dimljena kobasica - 500 RSD</li>
+      </ul>
+    </section>
+
+    <section id="rezervacija" class="meni-sekcija">
+      <h3 class="lang" data-sr="Rezervacija" data-en="Reservation">Rezervacija</h3>
+      <form class="rezervacija-forma">
+        <input type="text" name="ime" placeholder="Ime / Name" required />
+        <input type="tel" name="telefon" placeholder="Telefon / Phone" required />
+        <input type="datetime-local" name="datum" required />
+        <textarea name="poruka" placeholder="Napomena / Message or number of guests"></textarea>
+        <button type="submit" class="lang" data-sr="Pošalji" data-en="Send">Pošalji</button>
+      </form>
+    </section>
+
+    <section id="mapa" class="meni-sekcija">
+      <h3 class="lang" data-sr="Gde se nalazimo" data-en="Where to find us">Gde se nalazimo</h3>
+      <div class="mapa-kontejner">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2831.3315104873473!2d21.320285476167465!3d43.580347071111356!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4755a4ebf96f7f3b%3A0x71be25d943cf5fcd!2z0KHRgtCw0L3QsCDQnNCw0YDQsNC00LjQvdC40LUg0YHRgtC-0LHRgNCw!5e0!3m2!1ssr!2srs!4v1713029600000!5m2!1ssr!2srs"
+          width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </section>
+
+    <section id="galerija" class="meni-sekcija">
+      <h3 class="lang" data-sr="Galerija" data-en="Gallery">Galerija</h3>
+      <div class="galerija">
+        <a href="enterijer.png" data-lightbox="kampus-galerija" data-title="Enterijer"><img src="enterijer.png" alt="Enterijer" /></a>
+        <a href="kafa.jpg" data-lightbox="kampus-galerija" data-title="Kafa"><img src="kafa.jpg" alt="Kafa" /></a>
+        <a href="hrana.jpg" data-lightbox="kampus-galerija" data-title="Hrana"><img src="hrana.jpg" alt="Hrana" /></a>
+      </div>
+    </section>
+
+    <section id="radnovreme" class="meni-sekcija">
+      <h3 class="lang" data-sr="Radno vreme" data-en="Working Hours">Radno vreme</h3>
+      <ul class="radno-vreme">
+        <li class="lang" data-sr="Ponedeljak - Petak: 08:00 - 22:00" data-en="Monday - Friday: 08:00 - 22:00">Ponedeljak - Petak: 08:00 - 22:00</li>
+        <li class="lang" data-sr="Subota: 09:00 - 00:00" data-en="Saturday: 09:00 - 00:00">Subota: 09:00 - 00:00</li>
+        <li class="lang" data-sr="Nedelja: Zatvoreno" data-en="Sunday: Closed">Nedelja: Zatvoreno</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <section id="onama">
+      <h4 class="lang" data-sr="O nama" data-en="About Us">O nama</h4>
+      <p class="lang" data-sr="Kampus je mesto za dobar zalogaj i još bolju kafu, u srcu grada."
+         data-en="Kampus is a place for a good bite and even better coffee, in the heart of the city.">
+         Kampus je mesto za dobar zalogaj i još bolju kafu, u srcu grada.
+      </p>
+    </section>
+
+    <section id="kontakt">
+      <h4 class="lang" data-sr="Kontakt" data-en="Contact">Kontakt</h4>
+      <p>Email: info@kampus.rs<br>
+         <span class="lang" data-sr="Telefon" data-en="Phone">Telefon</span>: +381 64 1234567
+      </p>
+    </section>
+
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.querySelector('.dropdown');
+      menu.classList.toggle('show');
+    }
+  </script>
+
+  <script>
+    function setLanguage(lang) {
+      document.querySelectorAll('.lang').forEach(el => {
+        const text = el.getAttribute('data-' + lang);
+        if (text) {
+          el.innerText = text;
+        }
+      });
+    }
+
+    // Postavi početni jezik (po izboru)
+    window.addEventListener('DOMContentLoaded', () => {
+      setLanguage('sr'); // ili 'en'
+    });
+  </script>
+
+</body>
+</html>
